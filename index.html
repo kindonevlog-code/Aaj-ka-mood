@@ -15,6 +15,7 @@
   >
 
   <style>
+
     * {
       margin: 0;
       padding: 0;
@@ -35,14 +36,18 @@
     }
 
     /* =========================
-       FULL SCREEN BACKGROUND
+       MAIN SCREEN
     ========================= */
 
     .app {
       position: relative;
+
       width: 100%;
       height: 100vh;
+      height: 100dvh;
+
       min-height: 620px;
+
       overflow: hidden;
 
       background-image:
@@ -59,13 +64,18 @@
       background-repeat: no-repeat;
     }
 
-    /* cinematic overlay */
+    /* =========================
+       CINEMATIC OVERLAY
+    ========================= */
 
     .app::before {
       content: "";
+
       position: absolute;
       inset: 0;
+
       z-index: 1;
+
       pointer-events: none;
 
       background:
@@ -84,9 +94,12 @@
 
     .app::after {
       content: "";
+
       position: absolute;
       inset: 0;
+
       z-index: 1;
+
       pointer-events: none;
 
       background:
@@ -94,7 +107,7 @@
           to bottom,
           transparent 35%,
           rgba(0, 0, 0, 0.12) 60%,
-          rgba(0, 0, 0, 0.62) 100%
+          rgba(0, 0, 0, 0.68) 100%
         );
     }
 
@@ -104,6 +117,7 @@
 
     .topbar {
       position: absolute;
+
       top: 20px;
       left: 22px;
       right: 22px;
@@ -111,13 +125,16 @@
       z-index: 5;
 
       display: flex;
+
       align-items: center;
       justify-content: space-between;
     }
 
     .brand {
       font-family: Georgia, serif;
+
       font-size: 14px;
+
       letter-spacing: 2px;
 
       color: #f1d8ad;
@@ -128,7 +145,9 @@
 
     .status {
       display: flex;
+
       align-items: center;
+
       gap: 7px;
 
       padding: 7px 12px;
@@ -143,6 +162,7 @@
       -webkit-backdrop-filter: blur(15px);
 
       font-family: Arial, sans-serif;
+
       font-size: 10px;
 
       color: rgba(255,255,255,0.78);
@@ -151,6 +171,8 @@
     .status-dot {
       width: 6px;
       height: 6px;
+
+      flex-shrink: 0;
 
       border-radius: 50%;
 
@@ -166,13 +188,16 @@
 
     .hero {
       position: relative;
+
       z-index: 3;
 
       width: 100%;
       height: 100%;
 
       display: flex;
+
       flex-direction: column;
+
       align-items: center;
 
       text-align: center;
@@ -184,6 +209,7 @@
       font-family: Arial, sans-serif;
 
       font-size: 9px;
+
       letter-spacing: 4px;
 
       text-transform: uppercase;
@@ -213,7 +239,9 @@
 
     .divider {
       display: flex;
+
       align-items: center;
+
       gap: 12px;
 
       margin-top: 19px;
@@ -261,14 +289,15 @@
     }
 
     /* =========================
-       PLAYER
+       MUSIC PLAYER
     ========================= */
 
     .player {
       position: absolute;
 
       left: 50%;
-      bottom: 18px;
+
+      bottom: 22px;
 
       transform: translateX(-50%);
 
@@ -283,28 +312,30 @@
       background:
         linear-gradient(
           135deg,
-          rgba(18,21,33,0.82),
-          rgba(7,10,18,0.74)
+          rgba(18,21,33,0.88),
+          rgba(7,10,18,0.82)
         );
 
-      border: 1px solid rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.16);
 
       backdrop-filter: blur(25px);
       -webkit-backdrop-filter: blur(25px);
 
       box-shadow:
-        0 20px 70px rgba(0,0,0,0.48),
+        0 20px 70px rgba(0,0,0,0.52),
         inset 0 1px 0 rgba(255,255,255,0.08);
     }
 
     .player-row {
       display: flex;
+
       align-items: center;
+
       gap: 12px;
     }
 
     /* =========================
-       ALBUM COVER
+       COVER
     ========================= */
 
     .cover {
@@ -329,6 +360,7 @@
       border: 1px solid rgba(255,255,255,0.13);
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -352,15 +384,19 @@
 
     .song-info {
       flex: 1;
+
       min-width: 0;
     }
 
     .song-title {
       font-size: 14px;
+
       font-weight: 600;
 
       white-space: nowrap;
+
       overflow: hidden;
+
       text-overflow: ellipsis;
 
       color: #fff;
@@ -374,6 +410,12 @@
       font-size: 10px;
 
       color: rgba(255,255,255,0.52);
+
+      white-space: nowrap;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
     }
 
     /* =========================
@@ -382,8 +424,12 @@
 
     .controls {
       display: flex;
+
       align-items: center;
+
       gap: 3px;
+
+      flex-shrink: 0;
     }
 
     .control {
@@ -391,6 +437,7 @@
       height: 36px;
 
       border: none;
+
       border-radius: 50%;
 
       background: transparent;
@@ -400,6 +447,7 @@
       cursor: pointer;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -412,6 +460,7 @@
 
     .control:hover {
       background: rgba(255,255,255,0.09);
+
       transform: scale(1.1);
     }
 
@@ -431,11 +480,12 @@
 
     .play:hover {
       background: #fff;
+
       transform: scale(1.06);
     }
 
     /* =========================
-       FAVOURITE
+       HEART
     ========================= */
 
     .heart {
@@ -443,6 +493,7 @@
       height: 34px;
 
       border: none;
+
       background: transparent;
 
       color: rgba(255,255,255,0.72);
@@ -466,6 +517,7 @@
 
     .progress-bar {
       width: 100%;
+
       height: 3px;
 
       border-radius: 10px;
@@ -498,6 +550,7 @@
 
     .times {
       display: flex;
+
       justify-content: space-between;
 
       margin-top: 5px;
@@ -515,7 +568,9 @@
 
     .volume {
       display: flex;
+
       align-items: center;
+
       gap: 7px;
 
       margin-left: 7px;
@@ -523,20 +578,24 @@
 
     .volume-icon {
       font-size: 12px;
+
       opacity: 0.6;
     }
 
     .volume-bar {
       width: 55px;
+
       height: 3px;
 
-      background: rgba(255,255,255,0.17);
+      background:
+        rgba(255,255,255,0.17);
 
       border-radius: 10px;
     }
 
     .volume-fill {
       width: 65%;
+
       height: 100%;
 
       background: #e7cea5;
@@ -545,19 +604,23 @@
     }
 
     /* =========================
-       ANIMATION
+       TITLE ANIMATION
     ========================= */
 
     @keyframes titleIn {
+
       from {
         opacity: 0;
+
         transform: translateY(18px);
       }
 
       to {
         opacity: 1;
+
         transform: translateY(0);
       }
+
     }
 
     /* =========================
@@ -567,24 +630,28 @@
     @media (max-width: 600px) {
 
       .app {
-        min-height: 100vh;
+        min-height: 100dvh;
 
         background-position: center center;
       }
 
       .topbar {
         top: 14px;
+
         left: 13px;
+
         right: 13px;
       }
 
       .brand {
         font-size: 11px;
+
         letter-spacing: 1.5px;
       }
 
       .status {
         padding: 6px 9px;
+
         font-size: 8px;
       }
 
@@ -594,16 +661,19 @@
 
       .eyebrow {
         font-size: 7px;
+
         letter-spacing: 3px;
       }
 
       .title {
         font-size: 52px;
+
         letter-spacing: -1px;
       }
 
       .subtitle {
         max-width: 270px;
+
         font-size: 11px;
       }
 
@@ -611,15 +681,17 @@
         width: 35px;
       }
 
-      .player {
-        width: calc(100% - 12px);
+      /* PLAYER FIX */
 
-        bottom: 7px;
+      .player {
+        width: calc(100% - 16px);
+
+        bottom: 22px;
 
         padding:
           11px
           11px
-          9px;
+          10px;
 
         border-radius: 19px;
       }
@@ -631,6 +703,7 @@
       .cover {
         width: 45px;
         height: 45px;
+
         border-radius: 11px;
       }
 
@@ -649,18 +722,64 @@
       .control {
         width: 31px;
         height: 31px;
+
         font-size: 11px;
       }
 
       .play {
         width: 40px;
         height: 40px;
+
         font-size: 13px;
       }
 
       .volume {
         display: none;
       }
+
+      .progress-area {
+        margin-top: 8px;
+      }
+
+    }
+
+    /* =========================
+       VERY SMALL PHONES
+    ========================= */
+
+    @media (max-width: 380px) {
+
+      .player {
+        bottom: 20px;
+
+        width: calc(100% - 12px);
+
+        padding: 9px;
+      }
+
+      .cover {
+        width: 42px;
+        height: 42px;
+      }
+
+      .controls {
+        gap: 0;
+      }
+
+      .control {
+        width: 28px;
+        height: 28px;
+      }
+
+      .play {
+        width: 38px;
+        height: 38px;
+      }
+
+      .song-title {
+        font-size: 11px;
+      }
+
     }
 
     /* =========================
@@ -679,6 +798,8 @@
 
       .player {
         width: min(900px, calc(100% - 80px));
+
+        bottom: 24px;
       }
 
       .cover {
@@ -693,6 +814,7 @@
       .artist {
         font-size: 11px;
       }
+
     }
 
   </style>
@@ -702,7 +824,9 @@
 
   <div class="app">
 
-    <!-- TOP BAR -->
+    <!-- =========================
+         TOP BAR
+    ========================= -->
 
     <header class="topbar">
 
@@ -711,14 +835,19 @@
       </div>
 
       <div class="status">
+
         <span class="status-dot"></span>
+
         रात • सुकून • ग़ज़ल
+
       </div>
 
     </header>
 
 
-    <!-- HERO -->
+    <!-- =========================
+         HERO
+    ========================= -->
 
     <main class="hero">
 
@@ -748,7 +877,9 @@
     </main>
 
 
-    <!-- MUSIC PLAYER -->
+    <!-- =========================
+         MUSIC PLAYER
+    ========================= -->
 
     <section class="player">
 
@@ -758,15 +889,22 @@
 
         <div class="song-info">
 
-          <div class="song-title" id="songTitle">
+          <div
+            class="song-title"
+            id="songTitle"
+          >
             आपकी पसंदीदा ग़ज़ल
           </div>
 
-          <div class="artist" id="artist">
+          <div
+            class="artist"
+            id="artist"
+          >
             Gazal Night Playlist
           </div>
 
         </div>
+
 
         <button
           class="heart"
@@ -775,6 +913,7 @@
         >
           ♡
         </button>
+
 
         <div class="controls">
 
@@ -820,6 +959,7 @@
 
         </div>
 
+
         <div class="volume">
 
           <span class="volume-icon">
@@ -827,13 +967,17 @@
           </span>
 
           <div class="volume-bar">
+
             <div class="volume-fill"></div>
+
           </div>
 
         </div>
 
       </div>
 
+
+      <!-- PROGRESS -->
 
       <div class="progress-area">
 
@@ -868,11 +1012,11 @@
   </div>
 
 
-  <script>
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
 
-    /* =========================
-       PLAYER UI
-    ========================= */
+  <script>
 
     const playButton =
       document.getElementById("playButton");
@@ -889,88 +1033,77 @@
     const currentTime =
       document.getElementById("currentTime");
 
+
     let playing = false;
+
     let progress = 8;
 
-    playButton.addEventListener("click", () => {
 
-      playing = !playing;
+    /* PLAY / PAUSE */
 
-      playButton.textContent =
-        playing ? "Ⅱ" : "▶";
+    playButton.addEventListener(
+      "click",
+      () => {
 
-    });
+        playing = !playing;
 
+        playButton.textContent =
+          playing ? "Ⅱ" : "▶";
 
-    heartButton.addEventListener("click", () => {
-
-      heartButton.classList.toggle("active");
-
-      heartButton.textContent =
-        heartButton.classList.contains("active")
-          ? "♥"
-          : "♡";
-
-    });
-
-
-    /* =========================
-       PROGRESS CLICK
-    ========================= */
-
-    progressBar.addEventListener("click", (event) => {
-
-      const rect =
-        progressBar.getBoundingClientRect();
-
-      const position =
-        (event.clientX - rect.left) / rect.width;
-
-      progress =
-        Math.max(
-          0,
-          Math.min(100, position * 100)
-        );
-
-      progressFill.style.width =
-        progress + "%";
-
-      const totalSeconds = 360;
-
-      const seconds =
-        Math.floor(
-          totalSeconds * progress / 100
-        );
-
-      const minutes =
-        Math.floor(seconds / 60);
-
-      const remainingSeconds =
-        seconds % 60;
-
-      currentTime.textContent =
-        String(minutes).padStart(2, "0")
-        + ":"
-        +
-        String(remainingSeconds).padStart(2, "0");
-
-    });
-
-
-    /* =========================
-       FAKE PLAYING ANIMATION
-       UNTIL REAL AUDIO IS ADDED
-    ========================= */
-
-    setInterval(() => {
-
-      if (!playing) return;
-
-      progress += 0.12;
-
-      if (progress >= 100) {
-        progress = 0;
       }
+    );
+
+
+    /* HEART */
+
+    heartButton.addEventListener(
+      "click",
+      () => {
+
+        heartButton.classList.toggle(
+          "active"
+        );
+
+        heartButton.textContent =
+          heartButton.classList.contains("active")
+            ? "♥"
+            : "♡";
+
+      }
+    );
+
+
+    /* PROGRESS BAR */
+
+    progressBar.addEventListener(
+      "click",
+      (event) => {
+
+        const rect =
+          progressBar.getBoundingClientRect();
+
+        const position =
+          (event.clientX - rect.left)
+          / rect.width;
+
+        progress =
+          Math.max(
+            0,
+            Math.min(
+              100,
+              position * 100
+            )
+          );
+
+        updateProgress();
+
+      }
+    );
+
+
+    /* UPDATE PROGRESS */
+
+    function updateProgress() {
 
       progressFill.style.width =
         progress + "%";
@@ -979,22 +1112,49 @@
 
       const seconds =
         Math.floor(
-          totalSeconds * progress / 100
+          totalSeconds *
+          progress /
+          100
         );
 
       const minutes =
-        Math.floor(seconds / 60);
+        Math.floor(
+          seconds / 60
+        );
 
       const remainingSeconds =
         seconds % 60;
 
       currentTime.textContent =
         String(minutes).padStart(2, "0")
-        + ":"
         +
-        String(remainingSeconds).padStart(2, "0");
+        ":"
+        +
+        String(
+          remainingSeconds
+        ).padStart(2, "0");
 
-    }, 1000);
+    }
+
+
+    /* DEMO PLAYER MOVEMENT */
+
+    setInterval(
+      () => {
+
+        if (!playing) return;
+
+        progress += 0.12;
+
+        if (progress >= 100) {
+          progress = 0;
+        }
+
+        updateProgress();
+
+      },
+      1000
+    );
 
   </script>
 
