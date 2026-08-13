@@ -1,254 +1,435 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aaj Ka Mood</title>
+
+  <title>सदाबहार गाने</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
   <style>
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
     }
 
     body {
-      min-height: 100vh;
-      font-family: 'Inter', sans-serif;
-      background: #111;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      transition: background 0.6s ease;
+      overflow: hidden;
+      font-family: "Noto Serif Devanagari", serif;
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(70, 90, 160, 0.35),
+          transparent 35%
+        ),
+        linear-gradient(
+          180deg,
+          #070b2a 0%,
+          #111b4a 55%,
+          #17244d 100%
+        );
+
+      color: #fff;
     }
 
-    .card {
+    .app {
+      position: relative;
       width: 100%;
-      max-width: 500px;
-      text-align: center;
-      padding: 40px 25px;
-      border-radius: 30px;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.15);
+      min-height: 100vh;
+      overflow: hidden;
     }
 
-    h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+    /* NIGHT SKY */
+
+    .sky {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
     }
 
-    .subtitle {
-      opacity: 0.7;
-      margin-bottom: 35px;
-    }
-
-    .moods {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-bottom: 30px;
-}
-    }
-
-    button {
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 20px;
-  padding: 18px 10px;
-  background: rgba(255,255,255,0.06);
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  font-family: inherit;
-  transition:
-    transform 0.25s ease,
-    background 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-button:hover {
-  transform: translateY(-5px);
-  background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.25);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-}
-
-button:active {
-  transform: scale(0.96);
-}
-    }
-
-.emoji {
-  display: block;
-  font-size: 28px;
-  margin-bottom: 9px;
-  filter: grayscale(10%);
-}
-    }
-
-    #message {
-      min-height: 70px;
-      font-size: 20px;
-      line-height: 1.5;
-      margin: 20px 0;
-    }
-
-    #again {
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
       background: white;
-      color: #111;
-      padding: 13px 25px;
-      font-weight: bold;
-      display: none;
+      border-radius: 50%;
+      opacity: 0.65;
+      box-shadow: 0 0 8px rgba(255,255,255,0.7);
     }
 
-    .hint {
-      font-size: 12px;
-      opacity: 0.45;
-      margin-top: 25px;
+    .star:nth-child(1) {
+      top: 12%;
+      left: 18%;
     }
+
+    .star:nth-child(2) {
+      top: 22%;
+      left: 72%;
+    }
+
+    .star:nth-child(3) {
+      top: 30%;
+      left: 42%;
+    }
+
+    .star:nth-child(4) {
+      top: 16%;
+      left: 84%;
+    }
+
+    .star:nth-child(5) {
+      top: 38%;
+      left: 12%;
+    }
+
+    /* MAIN CONTENT */
+
+    .content {
+      position: relative;
+      z-index: 2;
+
+      min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding: 60px 24px 130px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: clamp(48px, 8vw, 100px);
+      line-height: 1.05;
+      font-weight: 700;
+
+      color: #f7e5c3;
+
+      text-shadow:
+        0 4px 18px rgba(0,0,0,0.45);
+
+      margin-bottom: 30px;
+    }
+
+    .moon {
+      width: 110px;
+      height: 110px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle at 35% 30%,
+          #fff5df,
+          #f5dcae 65%,
+          #d9bb86
+        );
+
+      box-shadow:
+        0 0 35px rgba(255,220,170,0.45),
+        0 0 90px rgba(255,220,170,0.18);
+
+      margin-bottom: 40px;
+    }
+
+    .artwork {
+      width: min(440px, 80vw);
+      aspect-ratio: 1 / 1;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.12),
+          rgba(255,255,255,0.02)
+        );
+
+      border: 1px solid rgba(255,255,255,0.12);
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,0.45);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+    }
+
+    .artwork span {
+      font-size: 90px;
+      opacity: 0.8;
+    }
+
+    /* PLAYER */
+
+    .player {
+      position: fixed;
+      z-index: 10;
+
+      left: 50%;
+      bottom: 18px;
+
+      transform: translateX(-50%);
+
+      width: min(760px, calc(100% - 30px));
+
+      padding: 14px 18px;
+
+      border-radius: 22px;
+
+      background: rgba(15,18,35,0.78);
+
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+
+      border: 1px solid rgba(255,255,255,0.12);
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .song {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .cover {
+      width: 48px;
+      height: 48px;
+
+      flex-shrink: 0;
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #8c6a45,
+          #272b4f
+        );
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 20px;
+    }
+
+    .song-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .song-title {
+      font-size: 14px;
+      font-weight: 600;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .artist {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      opacity: 0.55;
+
+      margin-top: 3px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .control {
+      width: 38px;
+      height: 38px;
+
+      border: 0;
+      border-radius: 50%;
+
+      background: transparent;
+      color: white;
+
+      cursor: pointer;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 15px;
+    }
+
+    .play {
+      width: 44px;
+      height: 44px;
+
+      background: #fff;
+      color: #111;
+
+      font-size: 17px;
+    }
+
+    .progress {
+      width: 100%;
+      height: 3px;
+
+      margin-top: 12px;
+
+      background: rgba(255,255,255,0.16);
+
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+
+      width: 8%;
+      height: 100%;
+
+      background: white;
+
+      border-radius: inherit;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      .content {
+        padding-top: 70px;
+      }
+
+      .title {
+        font-size: 52px;
+      }
+
+      .moon {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 25px;
+      }
+
+      .artwork {
+        width: 86vw;
+        max-width: 360px;
+      }
+
+      .player {
+        bottom: 10px;
+        width: calc(100% - 18px);
+        padding: 12px;
+        border-radius: 19px;
+      }
+
+      .control {
+        width: 34px;
+        height: 34px;
+      }
+
+      .play {
+        width: 42px;
+        height: 42px;
+      }
+
+    }
+
   </style>
 </head>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <body>
 
-  <div class="card">
+  <div class="app">
 
-    <h1>Aaj Ka Mood</h1>
-
-    <p class="subtitle">
-      Pick honestly. No judgement.
-    </p>
-
-    <div class="moods">
-
-      <button onclick="setMood('happy')">
-        <span class="emoji">😎</span>
-        Happy
-      </button>
-
-      <button onclick="setMood('tired')">
-        <span class="emoji">😴</span>
-        Tired
-      </button>
-
-      <button onclick="setMood('chaos')">
-        <span class="emoji">🤯</span>
-        Chaos
-      </button>
-
-      <button onclick="setMood('sad')">
-        <span class="emoji">🌧️</span>
-        Low
-      </button>
-
-      <button onclick="setMood('focused')">
-        <span class="emoji">🎯</span>
-        Focused
-      </button>
-
-      <button onclick="setMood('bored')">
-        <span class="emoji">🥱</span>
-        Bored
-      </button>
-
+    <div class="sky">
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
+      <span class="star"></span>
     </div>
 
-    <div id="message">
-      What's your mood right now?
+    <main class="content">
+
+      <h1 class="title">
+        सदाबहार<br>
+        गाने
+      </h1>
+
+      <div class="moon"></div>
+
+      <div class="artwork">
+        <span>🎵</span>
+      </div>
+
+    </main>
+
+    <div class="player">
+
+      <div class="song">
+
+        <div class="cover">
+          🎶
+        </div>
+
+        <div class="song-info">
+
+          <div class="song-title">
+            आपका पसंदीदा गाना
+          </div>
+
+          <div class="artist">
+            Artist Name
+          </div>
+
+        </div>
+
+        <div class="controls">
+
+          <button class="control">
+            ⏮
+          </button>
+
+          <button class="control play">
+            ▶
+          </button>
+
+          <button class="control">
+            ⏭
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="progress">
+        <span></span>
+      </div>
+
     </div>
-
-    <button id="again" onclick="resetMood()">
-      Pick Again
-    </button>
-
-    <p class="hint">
-      Made for moments when scrolling gets boring.
-    </p>
 
   </div>
-
-  <script>
-
-    const messages = {
-
-      happy: [
-        "Good mood detected. Don't waste it scrolling. ✨",
-        "Aaj kuch bana daal.",
-        "This is your sign to do something memorable."
-      ],
-
-      tired: [
-        "You don't need motivation. You probably need a break.",
-        "Close the apps. Drink some water. Reset.",
-        "Slow down. Productivity isn't a race."
-      ],
-
-      chaos: [
-        "Brain has 47 tabs open. 😵‍💫",
-        "Pick ONE thing. Finish it. Then move.",
-        "Chaos is fine. Staying stuck isn't."
-      ],
-
-      sad: [
-        "Bad moments aren't permanent.",
-        "Be kind to yourself today.",
-        "You don't have to fix everything tonight."
-      ],
-
-      focused: [
-        "Excellent. Protect this focus.",
-        "Phone down. One task. 25 minutes.",
-        "This version of you gets things done. 🎯"
-      ],
-
-      bored: [
-        "Perfect. Boredom is where ideas start.",
-        "Build something stupid. It might become something great.",
-        "You've officially run out of excuses. 😈"
-      ]
-
-    };
-
-    const backgrounds = {
-      happy: "#d97706",
-      tired: "#334155",
-      chaos: "#7f1d1d",
-      sad: "#1e3a5f",
-      focused: "#14532d",
-      bored: "#581c87"
-    };
-
-    function setMood(mood) {
-
-      document.body.style.background = backgrounds[mood];
-
-      const list = messages[mood];
-
-      const random =
-        list[Math.floor(Math.random() * list.length)];
-
-      document.getElementById("message").textContent = random;
-
-      document.getElementById("again").style.display = "inline-block";
-    }
-
-    function resetMood() {
-
-      document.body.style.background = "#111";
-
-      document.getElementById("message").textContent =
-        "What's your mood right now?";
-
-      document.getElementById("again").style.display = "none";
-    }
-
-  </script>
 
 </body>
 </html>
