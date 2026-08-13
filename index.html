@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>सदाबहार गाने</title>
+  <title>Gazal Night — सदाबहार गाने</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap"
     rel="stylesheet"
   >
 
@@ -29,191 +29,337 @@
     }
 
     body {
-  overflow: hidden;
-  font-family: "Noto Serif Devanagari", serif;
-  color: #fff;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(3, 7, 25, 0.12),
-      rgba(3, 7, 25, 0.45)
-    ),
-    url("night.jpg") center center / cover no-repeat fixed;
-}
-
+      overflow: hidden;
+      background: #050916;
       color: #fff;
+      font-family: "Noto Serif Devanagari", serif;
     }
+
+    /* =========================
+       MAIN APP
+    ========================= */
 
     .app {
       position: relative;
       width: 100%;
-      min-height: 100vh;
+      height: 100vh;
+      min-height: 620px;
       overflow: hidden;
-    }
-
-    /* NIGHT SKY */
-
-    .sky {
-  display: none;
-}
-
-    .star {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.65;
-      box-shadow: 0 0 8px rgba(255,255,255,0.7);
-    }
-
-    .star:nth-child(1) {
-      top: 12%;
-      left: 18%;
-    }
-
-    .star:nth-child(2) {
-      top: 22%;
-      left: 72%;
-    }
-
-    .star:nth-child(3) {
-      top: 30%;
-      left: 42%;
-    }
-
-    .star:nth-child(4) {
-      top: 16%;
-      left: 84%;
-    }
-
-    .star:nth-child(5) {
-      top: 38%;
-      left: 12%;
-    }
-
-    /* MAIN CONTENT */
-
-    .content {
-      position: relative;
-      z-index: 2;
-
-      min-height: 100vh;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      padding: 60px 24px 130px;
-    }
-
-    margin-bottom: 20px;
-text-shadow:
-  0 3px 10px rgba(0,0,0,0.7),
-  0 0 30px rgba(255,220,170,0.12);
-
-    .moon {
-  display: none;
-}
-
-      background:
-        radial-gradient(
-          circle at 35% 30%,
-          #fff5df,
-          #f5dcae 65%,
-          #d9bb86
-        );
-
-      box-shadow:
-        0 0 35px rgba(255,220,170,0.45),
-        0 0 90px rgba(255,220,170,0.18);
-
-      margin-bottom: 40px;
-    }
-
-    .artwork {
-  display: none;
-}
 
       background:
         linear-gradient(
-          145deg,
-          rgba(255,255,255,0.12),
-          rgba(255,255,255,0.02)
+          180deg,
+          rgba(3, 7, 22, 0.12) 0%,
+          rgba(3, 7, 22, 0.18) 40%,
+          rgba(3, 7, 22, 0.62) 100%
+        ),
+        url("night.png") center center / cover no-repeat;
+    }
+
+    /* =========================
+       DARK CINEMATIC OVERLAY
+    ========================= */
+
+    .app::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle at 50% 22%,
+          rgba(255, 222, 174, 0.08),
+          transparent 28%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,0.20),
+          transparent 50%,
+          rgba(0,0,0,0.20)
         );
+    }
 
-      border: 1px solid rgba(255,255,255,0.12);
+    .app::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
 
-      box-shadow:
-        0 25px 70px rgba(0,0,0,0.45);
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,0.05),
+          transparent 40%,
+          rgba(0,0,0,0.40)
+        );
+    }
+
+    /* =========================
+       TOP BAR
+    ========================= */
+
+    .topbar {
+      position: absolute;
+      top: 22px;
+      left: 24px;
+      right: 24px;
+
+      z-index: 5;
 
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-
-      overflow: hidden;
     }
 
-    .artwork span {
-      font-size: 90px;
-      opacity: 0.8;
+    .brand {
+      font-family: Georgia, serif;
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: #f4dfbd;
+
+      text-shadow:
+        0 2px 12px rgba(0,0,0,0.7);
     }
 
-    /* PLAYER */
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+
+      padding: 7px 12px;
+
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 30px;
+
+      background: rgba(0,0,0,0.22);
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+
+      color: rgba(255,255,255,0.75);
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #d8b57a;
+
+      box-shadow:
+        0 0 10px rgba(216,181,122,0.8);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      position: relative;
+      z-index: 3;
+
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      text-align: center;
+
+      padding-top: clamp(75px, 11vh, 120px);
+    }
+
+    .eyebrow {
+      font-family: Arial, sans-serif;
+
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+
+      color: rgba(255,255,255,0.58);
+
+      margin-bottom: 14px;
+    }
+
+    .title {
+      font-size: clamp(48px, 8vw, 104px);
+
+      line-height: 0.98;
+
+      font-weight: 700;
+
+      color: #f5dfbd;
+
+      text-shadow:
+        0 4px 20px rgba(0,0,0,0.55),
+        0 0 45px rgba(245,223,189,0.12);
+
+      letter-spacing: -2px;
+
+      animation: titleIn 1.2s ease both;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin-top: 20px;
+    }
+
+    .divider-line {
+      width: 55px;
+      height: 1px;
+
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(245,223,189,0.65)
+      );
+    }
+
+    .divider-line.right {
+      background: linear-gradient(
+        90deg,
+        rgba(245,223,189,0.65),
+        transparent
+      );
+    }
+
+    .divider-dot {
+      width: 5px;
+      height: 5px;
+
+      transform: rotate(45deg);
+
+      background: #e5c594;
+    }
+
+    .subtitle {
+      margin-top: 14px;
+
+      font-size: 14px;
+
+      color: rgba(255,235,207,0.72);
+
+      text-shadow:
+        0 2px 10px rgba(0,0,0,0.8);
+    }
+
+    /* =========================
+       AMBIENT LIGHT
+    ========================= */
+
+    .ambient {
+      position: absolute;
+
+      left: 50%;
+      bottom: 17%;
+
+      transform: translateX(-50%);
+
+      width: 250px;
+      height: 250px;
+
+      border-radius: 50%;
+
+      background: rgba(230,177,96,0.07);
+
+      filter: blur(45px);
+
+      pointer-events: none;
+    }
+
+    /* =========================
+       MUSIC PLAYER
+    ========================= */
 
     .player {
-      position: fixed;
-      z-index: 10;
+      position: absolute;
 
       left: 50%;
       bottom: 18px;
 
       transform: translateX(-50%);
 
-      width: min(760px, calc(100% - 30px));
+      z-index: 10;
 
-      padding: 70px 24px 130px;
+      width: min(780px, calc(100% - 32px));
+
+      padding: 15px 18px 13px;
 
       border-radius: 22px;
 
-      background: rgba(15,18,35,0.78);
-
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-
-      border: 1px solid rgba(255,255,255,0.12);
-
-      box-shadow:
-        0 20px 60px rgba(0,0,0,0.35);
-    }
-
-    .song {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .cover {
-      width: 48px;
-      height: 48px;
-
-      flex-shrink: 0;
-
-      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.14);
 
       background:
         linear-gradient(
           135deg,
-          #8c6a45,
-          #272b4f
+          rgba(20,23,35,0.78),
+          rgba(8,11,20,0.72)
         );
+
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+
+      box-shadow:
+        0 20px 70px rgba(0,0,0,0.42),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .player-top {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    /* =========================
+       COVER
+    ========================= */
+
+    .cover {
+      position: relative;
+
+      width: 50px;
+      height: 50px;
+
+      flex-shrink: 0;
+
+      overflow: hidden;
+
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          145deg,
+          #806442,
+          #171b2c
+        );
+
+      border: 1px solid rgba(255,255,255,0.12);
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      font-size: 20px;
+      box-shadow:
+        0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .cover::before {
+      content: "♪";
+
+      font-family: Georgia, serif;
+
+      font-size: 25px;
+
+      color: #f1d4a6;
     }
 
     .song-info {
@@ -228,191 +374,66 @@ text-shadow:
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      color: #fff;
     }
 
     .artist {
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      opacity: 0.55;
-
       margin-top: 3px;
+
+      font-family: Arial, sans-serif;
+
+      font-size: 10px;
+
+      color: rgba(255,255,255,0.50);
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
+
+    .heart {
+      width: 34px;
+      height: 34px;
+
+      border: 0;
+      background: transparent;
+
+      color: rgba(255,255,255,0.65);
+
+      font-size: 20px;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        color 0.2s ease;
+    }
+
+    .heart:hover {
+      transform: scale(1.15);
+      color: #e8c58e;
+    }
+
+    /* =========================
+       CONTROLS
+    ========================= */
 
     .controls {
       display: flex;
       align-items: center;
+      justify-content: center;
+
       gap: 8px;
     }
 
     .control {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
 
       border: 0;
       border-radius: 50%;
 
       background: transparent;
-      color: white;
 
-      cursor: pointer;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 15px;
-    }
-
-    .play {
-      width: 44px;
-      height: 44px;
-
-      background: #fff;
-      color: #111;
-
-      font-size: 17px;
-    }
-
-    .progress {
-      width: 100%;
-      height: 3px;
-
-      margin-top: 12px;
-
-      background: rgba(255,255,255,0.16);
-
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .progress span {
-      display: block;
-
-      width: 8%;
-      height: 100%;
-
-      background: white;
-
-      border-radius: inherit;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 600px) {
-
-      .content {
-        padding-top: 70px;
-      }
-
-      .title {
-        font-size: 52px;
-      }
-
-      .moon {
-        width: 90px;
-        height: 90px;
-        margin-bottom: 25px;
-      }
-
-      .artwork {
-        width: 86vw;
-        max-width: 360px;
-      }
-
-      .player {
-        bottom: 10px;
-        width: calc(100% - 18px);
-        padding: 12px;
-        border-radius: 19px;
-      }
-
-      .control {
-        width: 34px;
-        height: 34px;
-      }
-
-      .play {
-        width: 42px;
-        height: 42px;
-      }
-
-    }
-
-  </style>
-</head>
-
-<body>
-
-  <div class="app">
-
-    <div class="sky">
-      <span class="star"></span>
-      <span class="star"></span>
-      <span class="star"></span>
-      <span class="star"></span>
-      <span class="star"></span>
-    </div>
-
-    <main class="content">
-
-      <h1 class="title">
-        सदाबहार<br>
-        गाने
-      </h1>
-
-      <div class="moon"></div>
-
-      <div class="artwork">
-        <span>🎵</span>
-      </div>
-
-    </main>
-
-    <div class="player">
-
-      <div class="song">
-
-        <div class="cover">
-          🎶
-        </div>
-
-        <div class="song-info">
-
-          <div class="song-title">
-            आपका पसंदीदा गाना
-          </div>
-
-          <div class="artist">
-            Artist Name
-          </div>
-
-        </div>
-
-        <div class="controls">
-
-          <button class="control">
-            ⏮
-          </button>
-
-          <button class="control play">
-            ▶
-          </button>
-
-          <button class="control">
-            ⏭
-          </button>
-
-        </div>
-
-      </div>
-
-      <div class="progress">
-        <span></span>
-      </div>
-
-    </div>
-
-  </div>
-
-</body>
-</html>
+      color: rgba(255,255,
