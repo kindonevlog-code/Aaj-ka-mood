@@ -1,1 +1,237 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aaj Ka Mood</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      transition: background 0.6s ease;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+      padding: 40px 25px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      opacity: 0.7;
+      margin-bottom: 35px;
+    }
+
+    .moods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    button {
+      border: none;
+      border-radius: 18px;
+      padding: 16px 8px;
+      background: rgba(255,255,255,0.12);
+      color: white;
+      cursor: pointer;
+      font-size: 15px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.22);
+    }
+
+    .emoji {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    #message {
+      min-height: 70px;
+      font-size: 20px;
+      line-height: 1.5;
+      margin: 20px 0;
+    }
+
+    #again {
+      background: white;
+      color: #111;
+      padding: 13px 25px;
+      font-weight: bold;
+      display: none;
+    }
+
+    .hint {
+      font-size: 12px;
+      opacity: 0.45;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <h1>Aaj Ka Mood</h1>
+
+    <p class="subtitle">
+      Pick honestly. No judgement.
+    </p>
+
+    <div class="moods">
+
+      <button onclick="setMood('happy')">
+        <span class="emoji">😎</span>
+        Happy
+      </button>
+
+      <button onclick="setMood('tired')">
+        <span class="emoji">😴</span>
+        Tired
+      </button>
+
+      <button onclick="setMood('chaos')">
+        <span class="emoji">🤯</span>
+        Chaos
+      </button>
+
+      <button onclick="setMood('sad')">
+        <span class="emoji">🌧️</span>
+        Low
+      </button>
+
+      <button onclick="setMood('focused')">
+        <span class="emoji">🎯</span>
+        Focused
+      </button>
+
+      <button onclick="setMood('bored')">
+        <span class="emoji">🥱</span>
+        Bored
+      </button>
+
+    </div>
+
+    <div id="message">
+      What's your mood right now?
+    </div>
+
+    <button id="again" onclick="resetMood()">
+      Pick Again
+    </button>
+
+    <p class="hint">
+      Made for moments when scrolling gets boring.
+    </p>
+
+  </div>
+
+  <script>
+
+    const messages = {
+
+      happy: [
+        "Good mood detected. Don't waste it scrolling. ✨",
+        "Aaj kuch bana daal.",
+        "This is your sign to do something memorable."
+      ],
+
+      tired: [
+        "You don't need motivation. You probably need a break.",
+        "Close the apps. Drink some water. Reset.",
+        "Slow down. Productivity isn't a race."
+      ],
+
+      chaos: [
+        "Brain has 47 tabs open. 😵‍💫",
+        "Pick ONE thing. Finish it. Then move.",
+        "Chaos is fine. Staying stuck isn't."
+      ],
+
+      sad: [
+        "Bad moments aren't permanent.",
+        "Be kind to yourself today.",
+        "You don't have to fix everything tonight."
+      ],
+
+      focused: [
+        "Excellent. Protect this focus.",
+        "Phone down. One task. 25 minutes.",
+        "This version of you gets things done. 🎯"
+      ],
+
+      bored: [
+        "Perfect. Boredom is where ideas start.",
+        "Build something stupid. It might become something great.",
+        "You've officially run out of excuses. 😈"
+      ]
+
+    };
+
+    const backgrounds = {
+      happy: "#d97706",
+      tired: "#334155",
+      chaos: "#7f1d1d",
+      sad: "#1e3a5f",
+      focused: "#14532d",
+      bored: "#581c87"
+    };
+
+    function setMood(mood) {
+
+      document.body.style.background = backgrounds[mood];
+
+      const list = messages[mood];
+
+      const random =
+        list[Math.floor(Math.random() * list.length)];
+
+      document.getElementById("message").textContent = random;
+
+      document.getElementById("again").style.display = "inline-block";
+    }
+
+    function resetMood() {
+
+      document.body.style.background = "#111";
+
+      document.getElementById("message").textContent =
+        "What's your mood right now?";
+
+      document.getElementById("again").style.display = "none";
+    }
+
+  </script>
+
+</body>
+</html>
