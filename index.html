@@ -47,26 +47,39 @@
     }
 
     .moods {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 30px;
+}
     }
 
     button {
-      border: none;
-      border-radius: 18px;
-      padding: 16px 8px;
-      background: rgba(255,255,255,0.12);
-      color: white;
-      cursor: pointer;
-      font-size: 15px;
-      transition: transform 0.2s, background 0.2s;
-    }
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px;
+  padding: 18px 10px;
+  background: rgba(255,255,255,0.06);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
 
-    button:hover {
-      transform: translateY(-4px);
-      background: rgba(255,255,255,0.22);
+button:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.25);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+}
+
+button:active {
+  transform: scale(0.96);
+}
     }
 
     .emoji {
